@@ -1,0 +1,13 @@
+{
+  "appId": "com.xtreamplayer.app",
+  "appName": "Xtream Player",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}
