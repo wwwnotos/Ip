@@ -1,0 +1,8 @@
+{
+  "appId": "com.movos.nativepro",
+  "appName": "Movos Native Pro",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}
