@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <title>MOVOS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              background: '#F2F2F7', // iOS Light Gray
+              surface: '#FFFFFF',
+              primary: '#007AFF', // iOS Blue
+              secondary: '#E5E5EA', // iOS Gray Button
+              dark: {
+                background: '#000000',
+                surface: '#1C1C1E',
+                secondary: '#2C2C2E',
+              }
+            },
+            boxShadow: {
+              'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+              'card': '0 10px 40px -10px rgba(0, 0, 0, 0.15)',
+              'float': '0 20px 40px -5px rgba(0, 0, 0, 0.1)',
+              'glow': '0 0 15px rgba(59, 130, 246, 0.3)',
+            },
+            borderRadius: {
+              '4xl': '2rem',
+              '5xl': '2.5rem',
+            },
+            animation: {
+              'gradient-x': 'gradient-x 3s ease infinite',
+            },
+            keyframes: {
+              'gradient-x': {
+                '0%, 100%': {
+                  'background-size': '200% 200%',
+                  'background-position': 'left center'
+                },
+                '50%': {
+                  'background-size': '200% 200%',
+                  'background-position': 'right center'
+                },
+              },
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #F2F2F7;
+        color: #000;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden; /* Prevent horizontal scroll during slides */
+        transition: background-color 0.5s ease;
+        overscroll-behavior-y: none; /* Prevent elastic scrolling on iOS */
+      }
+
+      .dark body {
+        background-color: #000000;
+        color: #fff;
+      }
+      
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+      /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+      }
+      
+      /* Advanced Glassmorphism - Light Mode */
+      .glass-header {
+        background: rgba(242, 242, 247, 0.75);
+        backdrop-filter: saturate(180%) blur(24px);
+        -webkit-backdrop-filter: saturate(180%) blur(24px);
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+      }
+      
+      .glass-nav {
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: saturate(180%) blur(35px);
+        -webkit-backdrop-filter: saturate(180%) blur(35px);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+      }
+
+      .glass-button {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      /* Advanced Glassmorphism - Dark Mode Overrides */
+      .dark .glass-header {
+        background: rgba(0, 0, 0, 0.75);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .dark .glass-nav {
+        background: rgba(28, 28, 30, 0.65);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .dark .glass-button {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Smooth Slide Animations */
+      @keyframes slideInRight {
+        from { transform: translateX(30px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      
+      @keyframes slideInLeft {
+        from { transform: translateX(-30px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+
+      .slide-in-right {
+        animation: slideInRight 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      }
+
+      .slide-in-left {
+        animation: slideInLeft 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      }
+
+      /* iOS Spring Modal Animation */
+      @keyframes springUp {
+        0% {
+          transform: translateY(100px) scale(0.95);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+
+      .animate-spring-up {
+        animation: springUp 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+      }
+
+      /* Safe Area Utilities */
+      .pt-safe {
+        padding-top: env(safe-area-inset-top);
+      }
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
